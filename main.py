@@ -25,10 +25,10 @@ if stationsDataRequest.status_code == 200 and meterologicalDataRequest.status_co
                     'onlineDate': station['onlineDate'],
                     'airTemp': stationData['airTemp'],
                     'precip': stationData.get('precip', '0'),
-                    'windSpeed': stationData.get('windSpeed', ''),
-                    'windDirection': stationData.get('windDirection', ''),
-                    'soilMoisture': stationData.get('soilMoisture', ''),
-                    'soilTemp': stationData.get('soilTemperature', ''),
+                    'windSpeed': stationData.get('windSpeed', '0'),
+                    'windDirection': stationData.get('windDirection', '0'),
+                    'soilMoisture': stationData.get('soilMoisture', '0'),
+                    'soilTemp': stationData.get('soilTemperature', '0'),
                     'dataInterval': stationData['dataIntervalMinutes'],
                     'recordedTime': stationData['recordedTime'],
                 }
@@ -56,23 +56,22 @@ try:
                 county TEXT,
                 latitude REAL,
                 longitude REAL,
-                timestamp TEXT,
                 elevation TEXT,
                 online_date TEXT,
-                airTemp REAL,
+                air_temp REAL,
                 precip REAL,
                 windspeed REAL,
                 wind_direction REAL,
-                soil_Moist REAL,
+                soil_moist REAL,
+                soil_temp real,
                 date_interval INTEGER,
-                recorded_time TEXT,
-                PRIMARY KEY (station_id)
+                recorded_time TEXT
         )               
     ''')
     #inserting each approved station into the table
     for station in approvedStations:
         cursor.execute('''
-            INSERT INTO stations(station_id, station_name, county, latitude, longitude, timestamp, elevation, online_date, airTemp, precip, windspeed, wind_direction, soil_Moist, date_interval, recorded_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+            INSERT INTO stations(station_id, station_name, county, latitude, longitude, elevation, online_date, air_temp, precip, windspeed, wind_direction, soil_moist, soil_temp, date_interval, recorded_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         ''',(station['stationID'],
                     station['stationName'],
                     station['county'],

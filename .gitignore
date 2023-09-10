@@ -350,6 +350,6 @@ MigrationBackup/
 .ionide/
 
 #Any databases
-.db
+*.db
 
-.pbix
+*.pbix

@@ -1,17 +1,17 @@
-from WeatherStation import WeatherStationHub
-from WeatherData import WeatherData
+from WeatherStation import WeatherStations
+from WeatherData import Hub
 
-weatherDB = WeatherData()
+wHub = Hub()
 
-weatherHub = WeatherStationHub()
+wStations = WeatherStations()
 
-stations = weatherHub.getStations()
+stations = wStations.getStations()
 
-weatherDB.insertStationData(stations)
+wHub.insertStationData(stations)
 
 for station in stations:
-    historicStations = weatherHub.getHistoricalData(station['stationID'], 300)
+    historicStations = wStations.getHistoricalData(station['stationID'], 300)
     for Hstation in historicStations:
-        weatherDB.insertHistoricalData(Hstation)
+        wHub.insertHistoricalData(Hstation)
         
-weatherDB.closeConnection()
+wHub.closeConnection()

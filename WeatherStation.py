@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime, timedelta
 
-class WeatherStationHub:    
+class WeatherStations:    
     def __timeChange(self, station):
         #Change Zulu time to central time for each station recored time
         timestampStr = station['recordedTime']
@@ -26,7 +26,7 @@ class WeatherStationHub:
                         approvedStation = {
                             'stationID': station['stationId'],
                             'stationName': station['stationName'],
-                            'county': station['county'],
+                            'county': f"{station['county']}, TX",
                             'latitude': station['latitude'],
                             'longitude': station['longitude'],
                             'elevation': station['elevation'],

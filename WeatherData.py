@@ -1,8 +1,8 @@
 import sqlite3
 
-class WeatherData:
+class Hub:
     def __init__(self):
-        self.conn = sqlite3.connect('TexMes.db')
+        self.conn = sqlite3.connect('weatherData.db')
         self.cursor = self.conn.cursor()
         self.__createTable()
 
